@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import About from "./components/About";
+import Form from "./components/Form";
 import Citas from "./components/Citas";
 import AboutDinamic from "./components/AboutDinamic";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/about" component={()=><About/>} />
+        <Route exact path="/form" component={()=><Form/>} />
         <Route exact path="/" component={()=> <Citas datos={datos}/>} />
         <Route exact path="/about/:id" component={AboutDinamic} />
       </Switch>

@@ -30,11 +30,11 @@ const Citas = ({ datos }) => {
                       {dato.fecha} - {dato.hora}
                     </span>
                   </div>
-              <p className="mb-0">{dato.sintomas}</p>
-              <div className="contacto py-3">
-              <p>Dueño: {dato.propietario}</p>
-              <p>Telefono: {dato.telefono}</p>
-              </div>
+                  <p className="mb-0">{dato.sintomas}</p>
+                  <div className="contacto py-3">
+                    <p>Dueño: {dato.propietario}</p>
+                    <p>Telefono: {dato.telefono}</p>
+                  </div>
                 </a>
               ))}
             </div>
