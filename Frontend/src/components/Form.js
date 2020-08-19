@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from '../config/axios'
 import Error from './Error'
 const Form = (props) => {
-
   const [error, setError] = useState(false)
   const [form, setForm] = useState({
     nombre:'',
@@ -35,6 +34,7 @@ const Form = (props) => {
     setError(false)
     //send form state with axios
     await axios.post('/pacientes',form)
+
      //reset form
      setForm({
     nombre:'',
@@ -44,6 +44,10 @@ const Form = (props) => {
     sintomas:'',
     hora:''
   })
+
+  //query to the api, render the citas
+  props.setFetch(true)
+
   //redirect to component Home
   props.history.push('/')
    
@@ -144,4 +148,4 @@ const Form = (props) => {
   );
 };
 
-export default Form;
+export default withRouter(Form); //save the props to router-dom
