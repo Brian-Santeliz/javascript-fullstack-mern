@@ -1,7 +1,23 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 const Form = () => {
+ 
+  const [form, setForm] = useState({
+    nombre:'',
+    propietario:'',
+    fecha:'',
+    telefono:'',
+    sintomas:'',
+    hora:''
+  })
+  const handleChange = (e)=>{
+    setForm({
+       ...form,
+      [e.target.name]: e.target.value
+    })
+  }
   return (
+    
     <Fragment>
       <h1 className="my-5">Crea una Cita</h1>
       <div className="container  py-5">
@@ -24,6 +40,7 @@ const Form = () => {
                   name="nombre"
                   id="nombre"
                   placeholder="Nombre de mascosta"
+                  onChange={(e)=>handleChange(e)}
                 />
               </div>
               <div className="form-group">
@@ -34,6 +51,7 @@ const Form = () => {
                   name="propietario"
                   id="propietario"
                   placeholder="Nombre de propietario"
+                  onChange={(e)=>handleChange(e)}
 
                 />
               </div>
@@ -43,6 +61,7 @@ const Form = () => {
                   className="form-control"
                   type="date"
                   name="fecha"
+                  onChange={(e)=>handleChange(e)}
                   id="fecha"
                 />
               </div>
@@ -54,6 +73,8 @@ const Form = () => {
                   name="telefono"
                   id="phone"
                   placeholder="Teléfono"
+                  onChange={(e)=>handleChange(e)}
+
                 />
               </div>
               <div className="form-group">
@@ -63,6 +84,8 @@ const Form = () => {
                   type="time"
                   name="hora"
                   id="time"
+                  onChange={(e)=>handleChange(e)}
+
                 />
               </div>
               <div className="form-group">
@@ -73,6 +96,8 @@ const Form = () => {
                   rows="6"
                   className="form-control"
                   placeholder="Describe los sintomas"
+                  onChange={(e)=>handleChange(e)}
+
                 ></textarea>
               </div>
               <button className="btn btn-info btn-block font-weight-bold text-uppercase">Crear Cita</button>
