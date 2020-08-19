@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from '../config/axios'
+import Error from './Error'
 const Form = () => {
- 
+
+  const [error, setError] = useState(false)
   const [form, setForm] = useState({
     nombre:'',
     propietario:'',
@@ -10,17 +13,43 @@ const Form = () => {
     sintomas:'',
     hora:''
   })
+    const {nombre,propietario,fecha,hora,sintomas,telefono} =  form
+
+  //set formState when the inputs change
   const handleChange = (e)=>{
     setForm({
        ...form,
       [e.target.name]: e.target.value
     })
   }
+
+  //when form submit
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    if(nombre.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' || telefono.trim() === ''){
+      
+      setError(true)
+      return
+    }
+    setError(false)
+    //send form state with axios
+   const response = await axios.post('/pacientes',form)
+     console.log(response)
+     setForm({
+    nombre:'',
+    propietario:'',
+    fecha:'',
+    telefono:'',
+    sintomas:'',
+    hora:''
+  })
+   
+  }
   return (
     
     <Fragment>
       <h1 className="my-5">Crea una Cita</h1>
-      <div className="container  py-5">
+      <div className="container  pb-5">
         <div className="row">
           <div className="col-md-12 d-flex justify-content-center">
             <Link
@@ -31,7 +60,8 @@ const Form = () => {
             </Link>
           </div>
           <div className="col-md-8 mx-auto">
-            <form className="bg-white p-5 bordered">
+            <form className="bg-white p-5 bordered" onSubmit={(e)=>handleSubmit(e)}>
+            {error && <Error/>}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre de mascota</label>
                 <input
@@ -41,6 +71,7 @@ const Form = () => {
                   id="nombre"
                   placeholder="Nombre de mascosta"
                   onChange={(e)=>handleChange(e)}
+                  value={nombre}
                 />
               </div>
               <div className="form-group">
@@ -52,7 +83,7 @@ const Form = () => {
                   id="propietario"
                   placeholder="Nombre de propietario"
                   onChange={(e)=>handleChange(e)}
-
+                  value={propietario}
                 />
               </div>
               <div className="form-group">
@@ -63,6 +94,7 @@ const Form = () => {
                   name="fecha"
                   onChange={(e)=>handleChange(e)}
                   id="fecha"
+                  value={fecha}
                 />
               </div>
               <div className="form-group">
@@ -74,7 +106,7 @@ const Form = () => {
                   id="phone"
                   placeholder="Teléfono"
                   onChange={(e)=>handleChange(e)}
-
+                  value={telefono}
                 />
               </div>
               <div className="form-group">
@@ -85,7 +117,7 @@ const Form = () => {
                   name="hora"
                   id="time"
                   onChange={(e)=>handleChange(e)}
-
+                  value={hora}
                 />
               </div>
               <div className="form-group">
@@ -97,7 +129,7 @@ const Form = () => {
                   className="form-control"
                   placeholder="Describe los sintomas"
                   onChange={(e)=>handleChange(e)}
-
+                  value={sintomas}
                 ></textarea>
               </div>
               <button className="btn btn-info btn-block font-weight-bold text-uppercase">Crear Cita</button>

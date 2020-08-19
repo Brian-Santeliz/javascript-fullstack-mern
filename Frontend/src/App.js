@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const fetchData = async()=>{
       try{
-        const response = await axios.get()
+        const response = await axios.get('/pacientes')
         setDatos(response.data)
       }catch{
         throw new Error('something was wrong with the data')
