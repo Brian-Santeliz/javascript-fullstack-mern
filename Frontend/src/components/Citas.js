@@ -22,16 +22,14 @@ const Citas = ({ datos }) => {
           <div className="col-md-8 mx-auto mb-5">
             <div className="list-group">
               {datos.map(dato => (
-                <a
-                  href=""
+                <Link
                   className="list-group-item list-group-item-action  p-5"
-                    key={dato._id}
-
+                  key={dato._id}   
                 >
                   <Cita
                     dato={dato}
                   />
-                </a>
+                </Link>
 
                ))}
             </div>

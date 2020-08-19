@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import Form from "./components/Form";
 import Citas from "./components/Citas";
+import CitaUnique from "./components/CitaUnique";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from './config/axios'
 
@@ -28,6 +29,8 @@ function App() {
       <Switch>
         <Route exact path="/form" component={()=><Form setFetch={setFetch}/>}/>
         <Route exact path="/" component={()=> <Citas datos={datos}/>} />
+        <Route exact path="/cita/:id" component={()=><CitaUnique/> } />
+
       </Switch>
     </Router>
   );

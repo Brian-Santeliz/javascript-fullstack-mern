@@ -1,59 +1,64 @@
 import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import axios from '../config/axios'
-import Error from './Error'
+import axios from "../config/axios";
+import Error from "./Error";
 const Form = (props) => {
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
-    nombre:'',
-    propietario:'',
-    fecha:'',
-    telefono:'',
-    sintomas:'',
-    hora:''
-  })
-    const {nombre,propietario,fecha,hora,sintomas,telefono} =  form
+    nombre: "",
+    propietario: "",
+    fecha: "",
+    telefono: "",
+    sintomas: "",
+    hora: "",
+  });
+  const { nombre, propietario, fecha, hora, sintomas, telefono } = form;
 
   //set formState when the inputs change
-  const handleChange = (e)=>{
+  const handleChange = (e) => {
     setForm({
-       ...form,
-      [e.target.name]: e.target.value
-    })
-  }
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   //when form submit
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(nombre.trim() === '' || propietario.trim() === '' || fecha.trim() === '' || hora.trim() === '' || sintomas.trim() === '' || telefono.trim() === ''){
+    if (
+      nombre.trim() === "" ||
+      propietario.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === "" ||
+      telefono.trim() === ""
+    ) {
       //show error
-      setError(true)
-      return
+      setError(true);
+      return;
     }
     //change state of error, if don't this. Error always show
-    setError(false)
+    setError(false);
     //send form state with axios
-    await axios.post('/pacientes',form)
+    await axios.post("/pacientes", form);
 
-     //reset form
-     setForm({
-    nombre:'',
-    propietario:'',
-    fecha:'',
-    telefono:'',
-    sintomas:'',
-    hora:''
-  })
+    //reset form
+    setForm({
+      nombre: "",
+      propietario: "",
+      fecha: "",
+      telefono: "",
+      sintomas: "",
+      hora: "",
+    });
 
-  //query to the api, render the citas
-  props.setFetch(true)
+    //query to the api, render the citas
+    props.setFetch(true);
 
-  //redirect to component Home
-  props.history.push('/')
-   
-  }
+    //redirect to component Home
+    props.history.push("/");
+  };
   return (
-    
     <Fragment>
       <h1 className="my-5">Crea una Cita</h1>
       <div className="container  pb-5">
@@ -67,8 +72,11 @@ const Form = (props) => {
             </Link>
           </div>
           <div className="col-md-8 mx-auto">
-            <form className="bg-white p-5 bordered" onSubmit={(e)=>handleSubmit(e)}>
-            {error && <Error/>}
+            <form
+              className="bg-white p-5 bordered"
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              {error && <Error />}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre de mascota</label>
                 <input
@@ -77,7 +85,7 @@ const Form = (props) => {
                   name="nombre"
                   id="nombre"
                   placeholder="Nombre de mascosta"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   value={nombre}
                 />
               </div>
@@ -89,7 +97,7 @@ const Form = (props) => {
                   name="propietario"
                   id="propietario"
                   placeholder="Nombre de propietario"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   value={propietario}
                 />
               </div>
@@ -99,7 +107,7 @@ const Form = (props) => {
                   className="form-control"
                   type="date"
                   name="fecha"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   id="fecha"
                   value={fecha}
                 />
@@ -112,7 +120,7 @@ const Form = (props) => {
                   name="telefono"
                   id="phone"
                   placeholder="Teléfono"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   value={telefono}
                 />
               </div>
@@ -123,7 +131,7 @@ const Form = (props) => {
                   type="time"
                   name="hora"
                   id="time"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   value={hora}
                 />
               </div>
@@ -135,11 +143,13 @@ const Form = (props) => {
                   rows="6"
                   className="form-control"
                   placeholder="Describe los sintomas"
-                  onChange={(e)=>handleChange(e)}
+                  onChange={(e) => handleChange(e)}
                   value={sintomas}
                 ></textarea>
               </div>
-              <button className="btn btn-info btn-block font-weight-bold text-uppercase">Crear Cita</button>
+              <button className="btn btn-info btn-block font-weight-bold text-uppercase">
+                Crear Cita
+              </button>
             </form>
           </div>
         </div>
