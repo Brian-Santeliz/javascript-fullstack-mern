@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
+import Swal from 'sweetalert2'
 import axios from "../config/axios";
 import Error from "./Error";
 const Form = (props) => {
@@ -55,6 +56,7 @@ const Form = (props) => {
     //query to the api, render the citas
     props.setFetch(true);
 
+    Swal.fire('Guardado','Cita agreagada correctamente!', 'success' )
     //redirect to component Home
     props.history.push("/");
   };
