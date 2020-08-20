@@ -36,6 +36,7 @@ function App() {
           return(
             <CitaUnique
             citaUnica={citaUnica}
+            setFetch={setFetch}
             />
           )
         } } />

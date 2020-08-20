@@ -1,16 +1,26 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
+import axios from '../config/axios'
 
 const CitaUnique = (props) => {
-  // //if the object the cita is empty, don't render this component.
+  // if the object the cita is empty, don't render this component.
   if (!props.citaUnica) {
     //redirect to component Home, when reload the page in this component
     // props.history.push("/");
     return null;
   }
   const { citaUnica } = props;
-  const handleClick = (id)=>{
-    console.log(id)
+  const handleClick = async(id)=>{
+   try{
+      //delete a cita 
+    await axios.delete(`/pacientes/${id}`)
+    //update the state to fech and reload the data
+    props.setFetch(true)
+    //redirect to the component home
+    props.history.push('/')
+   }catch{
+     throw new Error('has been an error the request to delete')
+   }
   }
   return (
     <Fragment>
