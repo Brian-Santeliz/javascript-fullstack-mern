@@ -29,8 +29,14 @@ function App() {
       <Switch>
         <Route exact path="/form" component={()=><Form setFetch={setFetch}/>}/>
         <Route exact path="/" component={()=> <Citas datos={datos}/>} />
-        <Route exact path="/cita/:id" component={()=><CitaUnique/> } />
-
+        <Route exact path="/cita/:id" render={(propsRouter)=>{
+          const id = propsRouter.match.params
+          return(
+            <CitaUnique
+              id={id}
+            />
+          )
+        } } />
       </Switch>
     </Router>
   );

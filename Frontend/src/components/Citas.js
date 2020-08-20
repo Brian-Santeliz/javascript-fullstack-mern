@@ -25,6 +25,7 @@ const Citas = ({ datos }) => {
                 <Link
                   className="list-group-item list-group-item-action  p-5"
                   key={dato._id}   
+                  to={`/cita/${dato._id}`} 
                 >
                   <Cita
                     dato={dato}
