@@ -8,7 +8,10 @@ const CitaUnique = (props) => {
     // props.history.push("/");
     return null;
   }
-  const {citaUnica} = props
+  const { citaUnica } = props;
+  const handleClick = (id)=>{
+    console.log(id)
+  }
   return (
     <Fragment>
       <h1 className="my-4">Nombre Cita: {citaUnica.nombre}</h1>
@@ -24,22 +27,28 @@ const CitaUnique = (props) => {
           </div>
         </div>
         <div className="col-md-8 mx-auto list-group">
-            <div className="list-group">
-              <div className="list-group-item list-group-item-action p-5">
+          <div className="list-group">
+            <div className="list-group-item list-group-item-action pt-3">
               <div className="d-flex  justify-content-between mb-4">
-        <h3 className="mb-4">{citaUnica.nombre}</h3>
-        <span className="fecha-alta">
-          {citaUnica.fecha} - {citaUnica.hora}
-        </span>
-      </div>
-      <h5 className="mb-0 ">Sintomas: {citaUnica.sintomas}</h5>
-      <div className="contacto py-3">
-        <p>Dueño: {citaUnica.propietario}</p>
-        <p>Telefono: {citaUnica.telefono}</p>
-      </div>
+                <h3 className="mb-4">{citaUnica.nombre}</h3>
+                <span className="fecha-alta">
+                  {citaUnica.fecha} - {citaUnica.hora}
+                </span>
               </div>
+              <h5 className="mb-0 ">Sitomas: {citaUnica.sintomas}</h5>
+              <div className="contacto py-3">
+                <p>Dueño: {citaUnica.propietario}</p>
+                <p>Telefono: {citaUnica.telefono}</p>
+              </div>
+              <button className="btn btn-danger btn-block font-weight-bold text-uppercase"
+              onClick={()=>handleClick(citaUnica._id)}
+              >
+                Eliminar &times;
+            </button>
             </div>
-       </div>
+            
+          </div>
+        </div>
       </div>
     </Fragment>
   );
