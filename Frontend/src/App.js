@@ -30,7 +30,7 @@ function App() {
         <Route exact path="/form" component={()=><Form setFetch={setFetch}/>}/>
         <Route exact path="/" component={()=> <Citas datos={datos}/>} />
         <Route exact path="/cita/:id" render={(propsRouter)=>{
-          //search the cita for id is equal to the cita in params
+          //search the cita for id is equal to the cita id in params
           const citaUnica = datos.filter(dato=>dato._id === propsRouter.match.params.id)[0]
         
           return(
