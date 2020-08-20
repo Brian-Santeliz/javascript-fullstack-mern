@@ -1,9 +1,10 @@
 import React from 'react'
 
 
-const CitaUnique = () =>{
+const CitaUnique = ({citaUnica}) =>{
+    const {nombre} = citaUnica
     return (
-    <h1>Desde el cita unico con el id: </h1>
+    <h1>Nombre Cita: {nombre}</h1>
     )
 }
 export default CitaUnique
