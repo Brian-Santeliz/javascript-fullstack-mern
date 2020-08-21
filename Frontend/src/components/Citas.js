@@ -24,16 +24,9 @@ const Citas = ({ datos }) => {
             <div className="list-group">
               {datos.length === 0 && <Empty title='No hay citas agrega una para comenzar'/>}
               {datos.map(dato => (
-                <Link
-                  className="list-group-item list-group-item-action  p-5"
-                  key={dato._id}   
-                  to={`/cita/${dato._id}`} 
-                >
                   <Cita
                     dato={dato}
                   />
-                </Link>
-
                ))}
             </div>
           </div>
