@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Swal from 'sweetalert2'
 import { Link, withRouter } from "react-router-dom";
 import axios from '../config/axios'
 
@@ -10,14 +11,28 @@ const CitaUnique = (props) => {
     return null;
   }
   const { citaUnica } = props;
-  const handleClick = async(id)=>{
+  const handleClick = (id)=>{
    try{
-      //delete a cita 
+    Swal.fire({
+      title:'Eliminar',
+      text:` ¿Estas seguro en eliminar la cita: ${citaUnica.nombre}?`,
+      icon:'warning',
+      showCancelButton:true,
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor:'#d33',
+      confirmButtonText:'Eliminar'
+    }).then(async result=>{
+      if(result.value){
+        Swal.fire('Eliminado', 'Cita eliminada correctamente!', 'success')
+              //delete a cita 
     await axios.delete(`/pacientes/${id}`)
     //update the state to fech and reload the data
     props.setFetch(true)
     //redirect to the component home
     props.history.push('/')
+
+      }
+    })
    }catch{
      throw new Error('has been an error the request to delete')
    }
