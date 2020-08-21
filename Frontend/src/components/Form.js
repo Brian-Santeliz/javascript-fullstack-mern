@@ -78,7 +78,9 @@ const Form = (props) => {
               className="bg-white p-5 bordered"
               onSubmit={(e) => handleSubmit(e)}
             >
-              {error && <Error />}
+              {error && <Error 
+                msg='Todos los campos son obligatorios'
+              />}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre de mascota</label>
                 <input
