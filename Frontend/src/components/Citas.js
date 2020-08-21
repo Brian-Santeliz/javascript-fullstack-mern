@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import Empty from './Empty'
 import Cita from './Cita'
 
 
 const Citas = ({ datos }) => {
-  //when datos is equal an array empty, don't render this component
-  if (datos.length === 0) return null;
+  //when datos is equal an array empty, don't render this component 
+  // if(datos.length === 0) return null
   return (
     <Fragment>
       <h1 className="my-5">Administrador de Citas</h1>
@@ -21,6 +22,7 @@ const Citas = ({ datos }) => {
           </div>
           <div className="col-md-8 mx-auto mb-5">
             <div className="list-group">
+              {datos.length === 0 && <Empty title='No hay citas agrega una para comenzar'/>}
               {datos.map(dato => (
                 <Link
                   className="list-group-item list-group-item-action  p-5"
