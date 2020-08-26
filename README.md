@@ -5,7 +5,7 @@ App web usign Stack MERN MongoDB, Express, React & Node.
 
 Resource Backend:
 
-*Cors
+* Cors
 * Mongoose
 * Nodemon
 * Morgan
